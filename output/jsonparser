@@ -1,0 +1,13 @@
+from langchain_ollama import ChatOllama
+from langchain_core.output_parsers import JsonOutputParser
+from langchain_core.prompts import PromptTemplate
+model=ChatOllama(model="gemma2:2b",temperature=0)
+parser=JsonOutputParser()
+template=PromptTemplate(
+    template='Give me the name,age,city of a finctional person \n {format_instructions}',
+    input_variables=[],
+    partial_variables={"format_instructions":parser.get_format_instructions()}
+)
+chain=template|model|parser
+result=chain.invoke({})
+print(result)
