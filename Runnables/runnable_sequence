@@ -1,0 +1,15 @@
+from langchain_ollama import ChatOllama
+from langchain_core.prompts import PromptTemplate
+from langchain_core.output_parsers import StrOutputParser
+from langchain_core.runnables import RunnableParallel, RunnablePassthrough,RunnableSequence
+
+# Initialize the model
+model = ChatOllama(model="gemma2:2b", temperature=0)
+
+prompt1=PromptTemplate(
+    template='Generate a tweet about {topic}',
+    input_variables=['topic']
+) 
+parser=StrOutputParser()
+chain1=RunnableSequence(prompt1,model,parser)
+chain1.invoke({'topic':'Indian Cricket'})
