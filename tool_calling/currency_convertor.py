@@ -21,7 +21,7 @@ def convert(base_currency_value:int,conversion_rate:Annotated[float,InjectedTool
     """ given a currency conversion rate this function calculates the target currency value from a given base currency value"""
     return base_currency_value*conversion_rate
 
-print(convert.invoke({"base_currency_value":100,"conversion_rate":94.7}))
+# print(convert.invoke({"base_currency_value":100,"conversion_rate":94.7}))
 
 
 #tool binding
